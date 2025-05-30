@@ -1,0 +1,17 @@
+﻿@page "/"
+@using BlazorApp1
+
+<h1>Hello, world!</h1>
+
+@code {
+	[Inject]
+	protected NavigationManager navigationManager { get; set; } = default!;
+
+	protected override async Task OnInitializedAsync() {
+		GC.Collect();
+		GC.WaitForPendingFinalizers();
+		GC.Collect();
+		await Task.Delay(2000);
+		navigationManager.NavigateTo("/");
+	}
+}
